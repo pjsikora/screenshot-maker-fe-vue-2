@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script>
+<script type="text/babel">
   export default {
     name: 'project-form',
 
@@ -24,6 +24,9 @@
       createProject: function () {
         console.log('create projet')
         console.log(this.name)
+        this.$http.get('http://localhost:8888/api/project/create?name=' + this.name).then(response => {
+          console.log(response)
+        })
       }
     }
   }
