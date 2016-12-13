@@ -19,8 +19,9 @@ const routes = [
   {path: '/project/single', component: ProjectSingle},
   {path: '/project/single/:page_id', component: ProjectSingle},
 
-  {path: '/screenshot/form', component: ScreenshotForm},
-  {path: '/screenshot/list', component: ScreenshotList}
+  {path: '/screenshot/form/:projectID', component: ScreenshotForm},
+  {path: '/screenshot/list', component: ScreenshotList},
+  {path: '/screenshot/single/:screenshotID', component: ScreenshotList}
 ]
 
 const router = new VueRouter({

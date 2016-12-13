@@ -1,10 +1,9 @@
 <template>
   <div class="">
-    <h1>Screenshot List</h1>
-    <div class="medium-12" v-for="item in screenshots">
-      <small>
-        <div class="medium-3">{{item.name}}</div>
-      </small>
+    <h1>Screenshot Single</h1>
+    <div>
+      <img src="" alt="">
+      <div v-for="item in points" v-bind:style="''">d</div>
     </div>
   </div>
 </template>
@@ -14,12 +13,14 @@
     name: '',
     data () {
       return {
-        screenshots: {}
+        screenshot: {},
+        points: {}
       }
     },
 
     methods: {
-      getProjects () {
+      getScreenshot () {
+        this.$route.params.screenshotID
         console.log('getProjects')
 
         this.$http.get('http://localhost:8888/api/screenshot/list').then(response => {
@@ -30,7 +31,7 @@
     },
 
     created () {
-      this.getProjects()
+      this.getScreenshot()
     }
   }
 </script>
