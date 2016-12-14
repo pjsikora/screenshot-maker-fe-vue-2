@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <h1>User login</h1>
+    <h1>User register</h1>
     <form action="">
       <label>
         Login:
@@ -10,7 +10,11 @@
         Password:
         <input type="text" placeholder="password" v-model="password">
       </label>
-      <div class="button" v-on:click="loginClicked()">Login</div>
+      <label>
+        Password retype:
+        <input type="text" placeholder="password" v-model="password">
+      </label>
+      <div class="button" v-on:click="register()">Register</div>
     </form>
   </div>
 </template>
@@ -26,7 +30,7 @@
     },
 
     methods: {
-      loginClicked () {
+      register () {
         console.log('login')
       }
     }

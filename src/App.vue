@@ -1,37 +1,55 @@
 <template>
   <div id="app">
-    <div class="medium-3 columns">
-      <ul>
-        <li>
-          <router-link to="/">Home</router-link>
-        </li>
-        <li>Project
-          <ul>
-            <li>
-              <router-link to="/project/form">form</router-link>
-            </li>
-            <li>
-              <router-link to="/project/list">list</router-link>
-            </li>
-            <li>
-              <router-link to="/project/single">single</router-link>
-            </li>
-          </ul>
-        </li>
-        <li>Screenshot
-          <ul>
-            <li>
-              <router-link to="/screenshot/form">form</router-link>
-            </li>
-            <li>
-              <router-link to="/screenshot/list">list</router-link>
-            </li>
-          </ul>
-        </li>
 
+    <div class="medium-2 columns">
+
+      <ul>
+        <small>
+          <li>
+            <router-link to="/">Home</router-link>
+          </li>
+          <li>
+            User
+            <ul>
+              <li>
+                <router-link to="/register">Register</router-link>
+              </li>
+              <li>
+                <router-link to="/login">Login</router-link>
+              </li>
+              <li>
+                <router-link to="/profile">Profile</router-link>
+              </li>
+            </ul>
+          </li>
+          <li>Project
+            <ul>
+              <li>
+                <router-link to="/project/form">form</router-link>
+              </li>
+              <li>
+                <router-link to="/project/list">list</router-link>
+              </li>
+              <li>
+                <router-link to="/project/single">single</router-link>
+              </li>
+            </ul>
+          </li>
+          <li>Screenshot
+            <ul>
+              <li>
+                <router-link to="/screenshot/form">form</router-link>
+              </li>
+              <li>
+                <router-link to="/screenshot/list">list</router-link>
+              </li>
+            </ul>
+          </li>
+        </small>
       </ul>
+
     </div>
-    <div class="medium-9 columns">
+    <div class="medium-10 columns">
       <router-view></router-view>
     </div>
   </div>

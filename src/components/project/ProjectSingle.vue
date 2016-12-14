@@ -41,14 +41,16 @@
           this.project = response.body
         })
       },
+
       getScreenshots () {
         this.$http.get('http://localhost:8888/api/screenshot/read?projectID=' + this.projectID).then(response => {
           console.log(response)
           this.screenshots = response.body
         })
       },
+
       addScreenshot () {
-        this.$router.replace('/screenshot/form/' + this.pageID)
+        this.$router.replace('/screenshot/form/' + this.projectID)
       }
     },
 

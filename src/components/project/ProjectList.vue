@@ -1,6 +1,7 @@
 <template>
   <div class="">
     <h1>Project list</h1>
+    <router-link to="/project/form/" class="button">Add project</router-link>
     <div class="medium-12" v-for="item in projects">
       <router-link v-bind:to='"/project/single/"+ item._id'>{{item.name}}</router-link>
     </div>
