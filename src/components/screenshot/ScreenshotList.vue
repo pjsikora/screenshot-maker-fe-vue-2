@@ -22,7 +22,7 @@
       getProjects () {
         console.log('getProjects')
 
-        this.$http.get('http://localhost:8888/api/screenshot/list').then(response => {
+        this.$http.get('http://localhost:8888/api/screenshot/list?token=' + window.localStorage.getItem('token')).then(response => {
           console.log(response)
           this.screenshots = response.body
         })

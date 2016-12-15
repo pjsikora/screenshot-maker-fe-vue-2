@@ -11,12 +11,14 @@
 
     <h2>Screenshots</h2>
     <a class="button" v-on:click="addScreenshot()">Add screenshot</a>
+    <a class="button" v-on:click="addScreenshot()">HTML validation</a>
+    <a class="button" v-on:click="addScreenshot()">CSS validation</a>
+    <a class="button" v-on:click="addScreenshot()">A11t validation</a>
 
     <div v-for="item in screenshots">
       <small>
         <router-link v-bind:to='"/screenshot/single/"+ item._id'>{{item.name}}</router-link>
         {{item.createDate}}
-        <div class="button tiny"></div>
       </small>
     </div>
 
@@ -36,14 +38,14 @@
 
     methods: {
       getProject () {
-        this.$http.get('http://localhost:8888/api/project/read?_id=' + this.projectID).then(response => {
+        this.$http.get('http://localhost:8888/api/project/read?_id=' + this.projectID + '&token=' + window.localStorage.getItem('token')).then(response => {
           console.log(response)
           this.project = response.body
         })
       },
 
       getScreenshots () {
-        this.$http.get('http://localhost:8888/api/screenshot/read?projectID=' + this.projectID).then(response => {
+        this.$http.get('http://localhost:8888/api/screenshot/read?projectID=' + this.projectID + '&token=' + window.localStorage.getItem('token')).then(response => {
           console.log(response)
           this.screenshots = response.body
         })
