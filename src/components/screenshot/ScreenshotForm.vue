@@ -31,6 +31,7 @@
 
     <div v-if="isError">
       <div>Error</div>
+      <p>{{errorMSG}}</p>
       <a class="button" v-on:click="restartForm()">Go back to screenshot form</a>
     </div>
 
@@ -52,6 +53,8 @@
       return {
         urls: 'fedojo.com \n google.com',
         projectID: '',
+
+        errorMSG: '',
 
         isForm: true,
         isProgress: false,
@@ -77,16 +80,21 @@
           })
         })
 
-        let currentURL = 'http://localhost:8888/api/screenshot/create?url=' + this.urls + '&projectID=' + this.projectID
+        let currentURL = 'http://localhost:8888/api/screenshot/create?url=' + this.urls + '&projectID=' + this.projectID + '&token=' + window.localStorage.getItem('token')
         console.log('Screenshot')
-//        console.log(currentURL)
 
         this.$http.get(currentURL).then((response) => {
           console.log(response)
 
-          this.isForm = false
-          this.isProgress = false
-          this.isComplete = true
+          if (response.body.status === 'ERROR') {
+            console.log('ERROR')
+            this.isError = true
+            this.isProgress = false
+          } else {
+            this.isForm = false
+            this.isProgress = false
+            this.isComplete = true
+          }
         })
       },
 

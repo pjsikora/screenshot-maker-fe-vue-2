@@ -39,8 +39,15 @@
     methods: {
       getProject () {
         this.$http.get('http://localhost:8888/api/project/read?_id=' + this.projectID + '&token=' + window.localStorage.getItem('token')).then(response => {
-          console.log(response)
-          this.project = response.body
+          if (response.body.success !== false) {
+            console.log(response)
+            this.project = response.body
+          } else {
+            console.log('No token')
+            delete window.localStorage.token
+            delete window.localStorage.userID
+            this.$router.replace('/login ')
+          }
         })
       },
 

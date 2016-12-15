@@ -2,8 +2,14 @@
   <div class="">
     <h1>Project list</h1>
     <router-link to="/project/form/" class="button">Add project</router-link>
-    <div class="medium-12" v-for="item in projects">
-      <router-link v-bind:to='"/project/single/"+ item._id'>{{item.name}}</router-link>
+    <div class="medium-12 row" v-for="item in projects">
+      <div class="medium-6 columns">
+        <router-link v-bind:to='"/project/single/"+ item._id'>{{item.name}}</router-link>
+      </div>
+      <div class="medium-6 columns">
+        <div class="button tiny">Hide/Resolve</div>
+        <div class="button tiny alert">Remove</div>
+      </div>
     </div>
   </div>
 </template>

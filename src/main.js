@@ -9,7 +9,7 @@ import VueResource from 'vue-resource'
 // import {Auth} from './helpers/Auth'
 import {Login, Register, Profile} from './components/user'
 import {ProjectForm, ProjectSingle, ProjectList} from './components/project'
-import {ScreenshotForm, ScreenshotList} from './components/screenshot'
+import {ScreenshotForm, ScreenshotList, ScreenshotSingle} from './components/screenshot'
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
@@ -40,7 +40,7 @@ const routes = [
   // Screenshot routes
   {path: '/screenshot/form/:projectID', component: ScreenshotForm, beforeEnter: requireAuth},
   {path: '/screenshot/list', component: ScreenshotList, beforeEnter: requireAuth},
-  {path: '/screenshot/single/:screenshotID', component: ScreenshotList, beforeEnter: requireAuth}
+  {path: '/screenshot/single/:screenshotID', component: ScreenshotSingle, beforeEnter: requireAuth}
 ]
 
 const router = new VueRouter({

@@ -20,6 +20,7 @@
 
     <div v-if="done">
       Done
+      <div class="button">Go to project</div>
     </div>
 
 
@@ -49,12 +50,14 @@
         this.form = false
         this.progress = true
 
-        this.$http.get('http://localhost:8888/api/project/create?name=' + this.name).then(response => {
+        this.$http.get('http://localhost:8888/api/project/create?name=' + this.name + '&token=' + window.localStorage.getItem('token')).then(response => {
           console.log(response)
 
           this.form = false
           this.progress = false
           this.done = true
+
+          this.$router.replace('/project/single/' + response.body._id)
         })
       }
     }
