@@ -1,6 +1,5 @@
 <template>
   <div class="">
-    <h1>Screenshot List</h1>
     <div class="medium-12" v-for="item in screenshots">
       <small>
         <div class="medium-3">{{item.name}}</div>
@@ -10,8 +9,6 @@
 </template>
 
 <script type="text/babel">
-  import Services from '../../helpers/Services'
-
   export default {
     name: '',
     data () {
@@ -23,12 +20,11 @@
     methods: {
       getProjects () {
         console.log('getProjects')
-        Services.screenshotsList(this)
-        //        this.$http.get('http://localhost:8888/api/screenshot/list?token=' + window.localStorage.getItem('token'))
-          .then(response => {
-            console.log(response)
-            this.screenshots = response.body
-          })
+
+        this.$http.get('http://localhost:8888/api/screenshot/list?token=' + window.localStorage.getItem('token')).then(response => {
+          console.log(response)
+          this.screenshots = response.body
+        })
       }
     },
 
