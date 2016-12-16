@@ -1,30 +1,18 @@
-<template>
-  <div class="">
-    <h1>Project form</h1>
-    <div v-if="form">
-      <form action="">
-        <label for="">
-          <input type="text" placeholder="Name" v-model="name">
-        </label>
-        <a class="button" v-on:click="createProject()">Create project</a>
-      </form>
-    </div>
-
-    <div v-if="progress">
-      Progress
-    </div>
-
-    <div v-if="error">
-      Error
-    </div>
-
-    <div v-if="done">
-      Done
-      <div class="button">Go to project</div>
-    </div>
-
-
-  </div>
+<template lang="jade">
+div
+  h1 Project form
+  div(v-if="form")
+    form
+      label
+        input(type="text", placeholder="Name", v-model="name")
+      .button(v-on:click="createProject()") Create project
+  div(v-if="progress")
+    p Progress
+  div(v-if="error")
+    p Error
+  div(v-if="done")
+    p Done
+    .button Go to project
 </template>
 
 <script type="text/babel">

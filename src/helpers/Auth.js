@@ -1,5 +1,5 @@
 var Auth = {
-  logout: function () {
+  logout: function (this) {
     delete window.localStorage.token;
     delete window.localStorage.userID;
   }

@@ -1,12 +1,9 @@
-<template>
-  <div class="">
-    <h1>Screenshot List</h1>
-    <div class="medium-12" v-for="item in screenshots">
-      <small>
-        <div class="medium-3">{{item.name}}</div>
-      </small>
-    </div>
-  </div>
+<template lang="jade">
+div
+  h1 Screenshot list
+  .medium-12(v-for="item in screenshots")
+    small
+      .medium-3 {{item.name}}
 </template>
 
 <script type="text/babel">

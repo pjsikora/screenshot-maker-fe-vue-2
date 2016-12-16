@@ -6,13 +6,14 @@ import App from './App'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 
+Vue.use(VueRouter)
+Vue.use(VueResource)
+
 // import {Auth} from './helpers/Auth'
 import {Login, Register, Profile} from './components/user'
 import {ProjectForm, ProjectSingle, ProjectList} from './components/project'
 import {ScreenshotForm, ScreenshotList, ScreenshotSingle} from './components/screenshot'
-
-Vue.use(VueRouter)
-Vue.use(VueResource)
+import {HTMLValidator} from './components/action'
 
 function requireAuth (to, from, next) {
   if (window.localStorage.getItem('token') != null) {
@@ -40,7 +41,9 @@ const routes = [
   // Screenshot routes
   {path: '/screenshot/form/:projectID', component: ScreenshotForm, beforeEnter: requireAuth},
   {path: '/screenshot/list', component: ScreenshotList, beforeEnter: requireAuth},
-  {path: '/screenshot/single/:screenshotID', component: ScreenshotSingle, beforeEnter: requireAuth}
+  {path: '/screenshot/single/:screenshotID', component: ScreenshotSingle, beforeEnter: requireAuth},
+
+  {path: '/validate', component: HTMLValidator}
 ]
 
 const router = new VueRouter({

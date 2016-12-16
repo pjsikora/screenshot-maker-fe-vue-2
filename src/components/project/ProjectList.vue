@@ -1,17 +1,14 @@
-<template>
-  <div class="">
-    <h1>Project list</h1>
-    <router-link to="/project/form/" class="button">Add project</router-link>
-    <div class="medium-12 row" v-for="item in projects">
-      <div class="medium-6 columns">
-        <router-link v-bind:to='"/project/single/"+ item._id'>{{item.name}}</router-link>
-      </div>
-      <div class="medium-6 columns">
-        <div class="button tiny">Hide/Resolve</div>
-        <div class="button tiny alert">Remove</div>
-      </div>
-    </div>
-  </div>
+<template lang="jade">
+  div
+    h1 Project list
+    router-link(to="/project/form/", class="button") Add project
+
+    .medium-12.row(v-for="item in projects")
+      .medium-6.columns
+        router-link(v-bind:to='"/project/single/"+item._id') {{item.name}}
+      .medium-6.columns
+        .button.tiny Hide/Resolve
+        .button.tiny.alert Remove
 </template>
 
 <script type="text/babel">
