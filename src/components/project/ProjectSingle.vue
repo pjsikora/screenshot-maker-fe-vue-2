@@ -1,28 +1,37 @@
-<template>
-  <div class="">
-    <h1>Project single</h1>
-    <p><strong>_id: </strong>{{project._id}}</p>
-    <p><strong>_v: </strong>{{project._v}}</p>
-    <p><strong>name: </strong>{{project.name}}</p>
-    <p><strong>createdBy: </strong>{{project.createdBy}}</p>
-    <p><strong>isDeleted: </strong>{{project.isDeleted}}</p>
-    <p><strong>isOpened: </strong>{{project.isOpened}}</p>
-    <p><strong>createDate: </strong>{{project.createDate}}</p>
-
-    <h2>Screenshots</h2>
-    <a class="button" v-on:click="addScreenshot()">Add screenshot</a>
-    <a class="button" v-on:click="addScreenshot()">HTML validation</a>
-    <a class="button" v-on:click="addScreenshot()">CSS validation</a>
-    <a class="button" v-on:click="addScreenshot()">A11t validation</a>
-
-    <div v-for="item in screenshots">
-      <small>
-        <router-link v-bind:to='"/screenshot/single/"+ item._id'>{{item.name}}</router-link>
-        {{item.createDate}}
-      </small>
-    </div>
-
-  </div>
+<template lang="jade">
+div
+  h1 Project single
+  div
+    p
+      strong _id: 
+      span {{project._id}}
+    p
+      strong _v:
+      span {{project.__v}}
+    p
+      strong name:
+      span {{project.name}}
+    p
+      strong createdBy:
+      span {{project.createdBy}}
+    p
+      strong isDeleted:
+      span {{project.isDeleted}}
+    p 
+      strong isOpened:
+      span {{project.isOpened}}
+    p 
+      strong createDate:
+      span {{project.createDate}}
+  h2 Screenshots
+  div
+    a.button(v-on:click="addScreenshot()") Add screenshot
+    a.button(v-on:click="addScreenshot()") HTML validation
+    a.button(v-on:click="addScreenshot()") CSS validation
+    a.button(v-on:click="addScreenshot()") A11t validation
+  div(v-for="item in screenshots")
+    small
+      router-link(v-bind:to='"/screenshot/single/"+ item._id') {{item.name}}
 </template>
 
 <script type="text/babel">
