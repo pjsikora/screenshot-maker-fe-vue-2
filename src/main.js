@@ -13,7 +13,7 @@ Vue.use(VueResource)
 import {Login, Register, Profile} from './components/user'
 import {ProjectForm, ProjectSingle, ProjectList} from './components/project'
 import {ScreenshotForm, ScreenshotList, ScreenshotSingle} from './components/screenshot'
-import {HTMLValidator, SEOChecks} from './components/action'
+import {HTMLValidator, SEOChecks, GatherLinks} from './components/action'
 
 function requireAuth (to, from, next) {
   if (window.localStorage.getItem('token') != null) {
@@ -44,7 +44,8 @@ const routes = [
   {path: '/screenshot/single/:screenshotID', component: ScreenshotSingle, beforeEnter: requireAuth},
 
   {path: '/validate', component: HTMLValidator},
-  {path: '/seo', component: SEOChecks}
+  {path: '/seo', component: SEOChecks},
+  {path: '/gather', component: GatherLinks}
 ]
 
 const router = new VueRouter({

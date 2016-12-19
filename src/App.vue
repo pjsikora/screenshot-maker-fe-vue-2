@@ -1,71 +1,44 @@
-<template>
-  <div id="app">
+<template lang="jade">
+#app
+  .medium-2.columns
+    ul
+      li
+        router-link(to='/') Home
+      li User
+        ul
+          li
+            router-link(to='/register') Register
+          li
+            router-link(to='/login') Login
+          li
+            router-link(to='/profile') Profile
+          li
+            a(v-on:click="logout()") Logout
+      li Project
+        ul
+          li
+            router-link(to='/project/form') Form
+          li
+            router-link(to='/project/list') List
+          li
+            router-link(to='/project/single') Single
+      li Screenshot
+        ul
+          li
+            router-link(to='/screenshot/form') Form
+          li
+            router-link(to='/screenshot/list') List
+      li Checks
+        ul
+          li
+            router-link(to='/validate') HTML Validator
+          li
+            router-link(to='/gather') Links
+          li
+            router-link(to='/seo') SEO Checker
 
-    <div class="medium-2 columns">
-
-      <ul>
-        <small>
-          <li>
-            <router-link to="/">Home</router-link>
-          </li>
-          <li>
-            User
-            <ul>
-              <li>
-                <router-link to="/register">Register</router-link>
-              </li>
-              <li>
-                <router-link to="/login">Login</router-link>
-              </li>
-              <li>
-                <router-link to="/profile">Profile</router-link>
-              </li>
-              <li>
-                <a v-on:click="logout()">Logout</a>
-              </li>
-            </ul>
-          </li>
-          <li>Project
-            <ul>
-              <li>
-                <router-link to="/project/form">form</router-link>
-              </li>
-              <li>
-                <router-link to="/project/list">list</router-link>
-              </li>
-              <li>
-                <router-link to="/project/single">single</router-link>
-              </li>
-            </ul>
-          </li>
-          <li>Screenshot
-            <ul>
-              <li>
-                <router-link to="/screenshot/form">form</router-link>
-              </li>
-              <li>
-                <router-link to="/screenshot/list">list</router-link>
-              </li>
-            </ul>
-          </li>
-          <li>Checks
-            <ul>
-              <li>
-                <router-link to="/validate">HTML Validator</router-link>
-              </li>
-              <li>
-                <router-link to="/seo">SEO Checker</router-link>
-              </li>
-            </ul>
-          </li>
-        </small>
-      </ul>
-
-    </div>
-    <div class="medium-10 columns">
-      <router-view></router-view>
-    </div>
-  </div>
+  .medium-10.columns  
+    router-view
 </template>
 
 <script>

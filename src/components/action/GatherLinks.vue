@@ -5,7 +5,7 @@ div
     div(v-if="v.form")
       form
         input(type="text", v-model="url")
-        .button(v-on:click="validate()") Validate
+        .button(v-on:click="validate()") Gather links
     
     div(v-if="v.progress")
       p In progress
@@ -17,12 +17,13 @@ div
       p Validation
 
       .validation(v-for="item in validation")
-        p.small {{item.message}}
-        p Line {{item.lastLine}}
+        p {{item}}
 
 </template>
 
 <script type="text/babel">
+  import Services from '../../helpers/Services'
+
   export default {
     name: '',
 
@@ -44,12 +45,11 @@ div
         this.v.form = false
         this.v.progress = true
 
-        this.$http.get('http://localhost:8888/api/validation/getlinks?url=' + this.url).then(response => {
-          console.log(response)
+        Services.gatherLinks(this, this.url).then(response => {
           this.v.progress = false
           this.v.done = true
-
-          this.validation = response.body.messages
+          console.log(response)
+          this.validation = response.body.body
         })
       }
     },

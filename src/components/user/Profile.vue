@@ -1,7 +1,6 @@
-<template>
-  <div class="">
-    <h1>User profile</h1>
-  </div>
+<template lang="jade">
+div
+  h1 User profile
 </template>
 
 <script type="text/babel">

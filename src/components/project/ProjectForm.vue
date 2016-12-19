@@ -16,6 +16,8 @@ div
 </template>
 
 <script type="text/babel">
+  import Services from '../../helpers/Services'
+
   export default {
     name: 'project-form',
 
@@ -32,13 +34,12 @@ div
 
     methods: {
       createProject: function () {
-        console.log('create projet')
-        console.log(this.name)
-
         this.form = false
         this.progress = true
 
-        this.$http.get('http://localhost:8888/api/project/create?name=' + this.name + '&token=' + window.localStorage.getItem('token')).then(response => {
+        Services.projectCreate(this, this.name)
+        // this.$http.get('http://localhost:8888/api/project/create?name=' + this.name + '&token=' + window.localStorage.getItem('token'))
+        .then(response => {
           console.log(response)
 
           this.form = false

@@ -1,12 +1,12 @@
 /* globals localStorage */
-class LocalStorage {
-  static g(key) {
-    return JSON.parse(localStorage.getItem(key));
-  }
+var LocalStorage = {
+  g: function (key) {
+    return JSON.parse(localStorage.getItem(key))
+  },
 
-  static s(key, value) {
-    return JSON.stringify(localStorage.setItem(key, value));
+  s: function (key, value) {
+    return JSON.stringify(localStorage.setItem(key, value))
   }
 }
 
-export default LocalStorage;
+export default LocalStorage
