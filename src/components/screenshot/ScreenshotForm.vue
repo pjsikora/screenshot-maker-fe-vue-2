@@ -8,6 +8,14 @@
           URL's (newline separated)
           <textarea placeholder="URL's" v-model="urls">
         </label>
+        <label> 
+          HTACCESS Login
+          <input type="text" name="" placeholder="HTACCESS Login" v-model="htaccess_login">
+        </label>
+        <label> 
+          HTACCESS Password
+          <input type="text" name="" placeholder="HTACCESS Password" v-model="htaccess_password">
+        </label>
         <label for="">
           <input type="text" placeholder="" v-model="projectID">
         </label>

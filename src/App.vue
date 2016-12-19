@@ -48,6 +48,16 @@
               </li>
             </ul>
           </li>
+          <li>Checks
+            <ul>
+              <li>
+                <router-link to="/validate">HTML Validator</router-link>
+              </li>
+              <li>
+                <router-link to="/seo">SEO Checker</router-link>
+              </li>
+            </ul>
+          </li>
         </small>
       </ul>
 
