@@ -43,9 +43,9 @@ const routes = [
   {path: '/screenshot/list', component: ScreenshotList, beforeEnter: requireAuth},
   {path: '/screenshot/single/:screenshotID', component: ScreenshotSingle, beforeEnter: requireAuth},
 
-  {path: '/validate', component: HTMLValidator},
-  {path: '/seo', component: SEOChecks},
-  {path: '/gather', component: GatherLinks}
+  {path: '/validate/html', component: HTMLValidator},
+  {path: '/validate/seo', component: SEOChecks},
+  {path: '/validate/gatherlinks', component: GatherLinks}
 ]
 
 const router = new VueRouter({

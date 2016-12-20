@@ -26,15 +26,17 @@ div
   h2 Screenshots
   div
     a.button(v-on:click="addScreenshot()") Add screenshot
-    a.button(v-on:click="addScreenshot()") HTML validation
-    a.button(v-on:click="addScreenshot()") CSS validation
-    a.button(v-on:click="addScreenshot()") A11t validation
+    //- a.button(v-on:click="addScreenshot()") HTML validation
+    //- a.button(v-on:click="addScreenshot()") CSS validation
+    //- a.button(v-on:click="addScreenshot()") A11t validation
   div(v-for="item in screenshots")
     small
       router-link(v-bind:to='"/screenshot/single/"+ item._id') {{item.name}}
 </template>
 
 <script type="text/babel">
+  import Services from '../../helpers/Services'
+
   export default {
     name: '',
     data () {
@@ -47,7 +49,8 @@ div
 
     methods: {
       getProject () {
-        this.$http.get('http://localhost:8888/api/project/read?_id=' + this.projectID + '&token=' + window.localStorage.getItem('token')).then(response => {
+        Services.screenshotsListOfProject(this, this.projectID)
+        .then(response => {
           if (response.body.success !== false) {
             console.log(response)
             this.project = response.body

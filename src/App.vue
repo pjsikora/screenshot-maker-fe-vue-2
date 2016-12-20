@@ -31,11 +31,11 @@
       li Checks
         ul
           li
-            router-link(to='/validate') HTML Validator
+            router-link(to='/validate/html') HTML Validator
           li
-            router-link(to='/gather') Links
+            router-link(to='/validate/gatherlinks') Links
           li
-            router-link(to='/seo') SEO Checker
+            router-link(to='/validate/seo') SEO Checker
 
   .medium-10.columns  
     router-view
