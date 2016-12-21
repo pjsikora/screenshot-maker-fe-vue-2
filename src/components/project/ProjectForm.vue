@@ -17,6 +17,7 @@ div
 
 <script type="text/babel">
   import Services from '../../helpers/Services'
+  import Auth from '../../helpers/Auth'
 
   export default {
     name: 'project-form',
@@ -27,7 +28,7 @@ div
 
         progress: false,
         error: false,
-        form: true,
+        form: false,
         done: false
       }
     },
@@ -37,17 +38,27 @@ div
         this.form = false
         this.progress = true
 
-        Services.projectCreate(this, this.name)
-        // this.$http.get('http://localhost:8888/api/project/create?name=' + this.name + '&token=' + window.localStorage.getItem('token'))
+        Services.projectCreate(this)
         .then(response => {
           console.log(response)
+          console.log(response.body)
 
-          this.form = false
-          this.progress = false
-          this.done = true
+          if (response.body.body.success) {
+            this.form = false
+            this.progress = false
+            this.done = true
 
-          this.$router.replace('/project/single/' + response.body._id)
+            this.$router.replace('/project/single/' + response.body._id)
+          }
         })
+      }
+    },
+
+    beforeCreate () {
+      if (Auth.isLogged()) {
+        this.form = true
+      } else {
+        // this.$router.replace('/login')
       }
     }
   }

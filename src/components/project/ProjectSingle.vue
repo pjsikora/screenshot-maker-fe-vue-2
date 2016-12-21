@@ -49,7 +49,7 @@ div
 
     methods: {
       getProject () {
-        Services.screenshotsListOfProject(this, this.projectID)
+        Services.screenshotsListOfProject(this)
         .then(response => {
           if (response.body.success !== false) {
             console.log(response)

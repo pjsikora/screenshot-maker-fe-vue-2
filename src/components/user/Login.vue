@@ -36,11 +36,12 @@
       }
     },
     created () {
-      ls.s('token', 'dd')
+      // ls.s('token', 'dd')
     },
 
     methods: {
       loginClicked () {
+        var _self = this
         this.isForm = false
         this.isProgress = true
 
@@ -53,8 +54,9 @@
 
             ls.s('token', response.body.token)
             ls.s('userID', response.body.userID)
-
-            this.$router.replace('/project/list')
+            setTimeout(function () {
+              _self.$router.replace('/project/list')
+            }, 500)
           } else {
             this.isError = true
             this.error = response.body.message
