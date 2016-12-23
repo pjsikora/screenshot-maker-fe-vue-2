@@ -2,16 +2,16 @@
 .row
   .medium-5.medium-centered.columns
     h4 User login
-    div(v-if='isForm')
+    div(v-if='v.form')
       form
         label Login
           input(type="text", placeholder="login", v-model="login")
         label Password
           input(type="text", placeholder="password", v-model="password")
         .button.expanded(v-on:click="loginClicked()") Login
-    div(v-if='isProgress')
+    div(v-if='v.rogress')
       p Logging in
-    div(v-if='isError')
+    div(v-if='v.error')
       p Error occured...
       p {{this.error}}
 </template>
@@ -27,10 +27,12 @@
         login: 'piotr',
         password: 'admin',
 
-        isForm: true,
-        isProgress: false,
-        isComplete: false,
-        isError: false,
+        v: {
+          form: true,
+          progress: false,
+          complete: false,
+          error: false
+        },
 
         error: ''
       }
@@ -42,23 +44,24 @@
     methods: {
       loginClicked () {
         var _self = this
-        this.isForm = false
-        this.isProgress = true
+        this.v.form = false
+        this.v.progress = true
 
         Services.login(this, this.login, this.password).then(response => {
           console.log(response)
 
           if (response.body.success === true) {
-            this.isProgress = false
-            this.isForm = true
+            this.v.Progress = false
+            this.v.Form = true
 
             ls.s('token', response.body.token)
             ls.s('userID', response.body.userID)
+
             setTimeout(function () {
               _self.$router.replace('/project/list')
             }, 500)
           } else {
-            this.isError = true
+            this.v.error = true
             this.error = response.body.message
           }
         })
