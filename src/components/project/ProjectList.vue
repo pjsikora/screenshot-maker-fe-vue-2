@@ -7,11 +7,20 @@
       h1 Project list
       router-link(to="/project/form/", class="button") Add project
 
+      .medium-12.row
+        .medium-2.columns 
+          strong Name
+        .medium-3.columns 
+          strong Created by
+        .medium-5.columns 
+          strong Actions
+
       .medium-12.row(v-for="item in projects")
-        .medium-4.columns
-          router-link(v-bind:to='"/project/single/"+item._id') {{item.name}}
+        .medium-2.columns
+          router-link(v-bind:to='"/project/single/"+item._id') 
+            small {{item.name}}
         .medium-3.columns
-          {{item.createdBy}}
+          small {{item.createdBy}}
         .medium-5.columns
           .button.tiny(v-on:click='resolve(item._id)') Hide/Resolve
           .button.tiny.warning(v-on:click='remove(item._id)') Remove
@@ -24,7 +33,6 @@
 
 <script type="text/babel">
   import Services from '../../helpers/Services'
-  // import Auth from '../../helpers/Auth'
 
   export default {
     name: '',

@@ -28,7 +28,7 @@ div
 
         progress: false,
         error: false,
-        form: false,
+        form: true,
         done: false
       }
     },
@@ -43,7 +43,7 @@ div
           console.log(response)
           console.log(response.body)
 
-          if (response.body.body.success) {
+          if (response.success) {
             this.form = false
             this.progress = false
             this.done = true
@@ -55,10 +55,14 @@ div
     },
 
     beforeCreate () {
+      console.log('Project form - before create')
+      console.log(Auth.isLogged())
       if (Auth.isLogged()) {
         this.form = true
+        console.log(this.form)
       } else {
-        // this.$router.replace('/login')
+        this.form = false
+        this.$router.replace('/login')
       }
     }
   }
