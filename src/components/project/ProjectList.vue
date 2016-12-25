@@ -9,29 +9,56 @@
 
       .medium-12.row
         .medium-2.columns 
-          strong Name
+          small
+            strong Name
         .medium-3.columns 
-          strong Created by
-        .medium-5.columns 
-          strong Actions
+          small
+            strong Created by
+        .medium-1.columns 
+          small
+            strong open
+        .medium-1.columns 
+          small
+            strong deleted
+        .medium-3.columns
+          small 
+            strong Actions
 
       .medium-12.row(v-for="item in projects")
-        .medium-2.columns
+        .medium-2.columns.name
           router-link(v-bind:to='"/project/single/"+item._id') 
             small {{item.name}}
-        .medium-3.columns
-          small {{item.createdBy}}
-        .medium-5.columns
-          .button.tiny(v-on:click='resolve(item._id)') Hide/Resolve
-          .button.tiny.warning(v-on:click='remove(item._id)') Remove
+        .medium-3.columns.createdBy
+          p
+            small {{item.createdBy}}
+        .medium-1.columns.isOpened
+          p
+            small {{item.isOpened}}
+        .medium-1.columns.isDeleted
+          p
+            small {{item.isDeleted}}
+        .medium-3.columns.actions
+          span(v-if='item.isOpened')
+            .button.tiny(v-on:click='closeItem(item._id)') Close
+          span(v-if='!item.isOpened')
+            .button.tiny(v-on:click='openItem(item._id)') Open
+
+          span(v-if='!item.isDeleted')
+            .button.tiny.warning(v-on:click='removeItem(item._id)') Remove
+          span(v-if='item.isDeleted')
+            .button.tiny.warning(v-on:click='revertItem(item._id)') Revert
+
           .button.tiny.alert(v-on:click='removeHard(item._id)') Remove!
+
     div(v-if='v.modal')
       p Are you sure want to {{actionDescription}} item?
       .button(v-on:click='confirmAction()') Yes
       .button(v-on:click='cancelAction()') No
+
 </template>
 
 <script type="text/babel">
+  // import Auth from '../../helpers/Auth'
   import Services from '../../helpers/Services'
 
   export default {
@@ -65,24 +92,41 @@
           } else {
             if (r.body.message === 'No token' || r.body.message === 'Failed to authenticate token') {
               // Auth.logout(this)
+              console.log('ding')
             }
           }
         })
       },
 
-      resolve (id) {
+      closeItem (id) {
         this.v.created = false
         this.v.modal = true
-        this.actionDescription = 'resolve'
-        this.action = 'resolve'
+        this.actionDescription = 'close'
+        this.action = 'close'
         this.selectedItem = id
       },
 
-      remove (id) {
+      openItem (id) {
+        this.v.created = false
+        this.v.modal = true
+        this.actionDescription = 'open'
+        this.action = 'open'
+        this.selectedItem = id
+      },
+
+      removeItem (id) {
         this.v.created = false
         this.v.modal = true
         this.actionDescription = 'delete'
         this.action = 'delete'
+        this.selectedItem = id
+      },
+
+      revertItem (id) {
+        this.v.created = false
+        this.v.modal = true
+        this.actionDescription = 'revert'
+        this.action = 'revert'
         this.selectedItem = id
       },
 
@@ -95,11 +139,20 @@
       },
 
       confirmAction () {
-        this.v.modal = false
-        this.v.created = true
-        this.action = ''
-        this.selectedItem = ''
-        this.actionDescription = ''
+        if (this.action === 'close') {
+          console.log('close' + this.selectedItem)
+        } else if (this.action === 'open') {
+          console.log('open' + this.selectedItem)
+        } else if (this.action === 'delete') {
+          console.log('delete' + this.selectedItem)
+        } else if (this.action === 'revert') {
+          console.log('revert' + this.selectedItem)
+        } else if (this.action === 'hardDelete') {
+          console.log('hardDelete' + this.selectedItem)
+          Services.projectHardDelete(this.selectedItem).then(r => {
+            console.log(r)
+          })
+        }
       },
 
       cancelAction () {

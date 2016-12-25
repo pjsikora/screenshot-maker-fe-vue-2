@@ -22,6 +22,9 @@ var Services = {
     return _this.$http.get('http://localhost:8888/api/project/list' + '?token=' + _token)
   },
   projectSingle: function (_this) { },
+  projectHardDelete: function (_this) {
+    return 
+  },
   screenshot: function (_this) { },
 
   projectCreate: function (_this) {
