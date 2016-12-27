@@ -13,6 +13,7 @@ Vue.use(VueResource)
 import {Login, Register, Profile} from './components/user'
 import {ProjectForm, ProjectSingle, ProjectList} from './components/project'
 import {ScreenshotForm, ScreenshotList, ScreenshotSingle} from './components/screenshot'
+import {PointForm} from './components/point'
 import {HTMLValidator, SEOChecks, GatherLinks} from './components/action'
 
 function requireAuth (to, from, next) {
@@ -43,6 +44,10 @@ const routes = [
   {path: '/screenshot/list', component: ScreenshotList, beforeEnter: requireAuth},
   {path: '/screenshot/single/:screenshotID', component: ScreenshotSingle, beforeEnter: requireAuth},
 
+  // Point routes
+  {path: '/point/add/:screenshotID/:x/:y', component: PointForm, beforeEnter: requireAuth},
+
+  // Action routes
   {path: '/validate/html', component: HTMLValidator},
   {path: '/validate/seo', component: SEOChecks},
   {path: '/validate/gatherlinks', component: GatherLinks}

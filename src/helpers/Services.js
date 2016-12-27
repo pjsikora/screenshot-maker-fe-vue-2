@@ -23,7 +23,7 @@ var Services = {
   },
   projectSingle: function (_this) { },
   projectHardDelete: function (_this) {
-    return 
+    return _this.$http.get(api + 'project/')
   },
   screenshot: function (_this) { },
 
