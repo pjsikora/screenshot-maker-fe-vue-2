@@ -25,7 +25,11 @@ var Services = {
   projectHardDelete: function (_this) {
     return _this.$http.get(api + 'project/')
   },
+
   screenshot: function (_this) { },
+  screenshotListOfProject: function (_this) {
+    return _this.$http.get(api + 'screenshot/read?projectID=' + _this.projectID + token)
+  },
 
   projectCreate: function (_this) {
     return _this.$http.get(api + 'project/create?name=' + _this.name + token + user)

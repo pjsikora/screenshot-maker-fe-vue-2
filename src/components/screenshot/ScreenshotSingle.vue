@@ -4,11 +4,15 @@
     .pointsKeeper(v-on:click="showAddPointWindow($event)")
       .point(v-for="item in points", v-bind:style="{ left: item.x + '%', top: item.y + '%' }")
       img(v-bind:src='"http://localhost:8888/api/screenshot/file"+restOfURL')
+    point-list-of-screenshot(:screenshot-id='screenshotID')
 </template>
 
 <script type="text/babel">
+  import PointListOfScreenshot from '../point/PointListOfScreenshot'
+
   export default {
     name: '',
+    components: {PointListOfScreenshot},
     data () {
       return {
         screenshotID: '',

@@ -29,21 +29,20 @@ div
     //- a.button(v-on:click="addScreenshot()") HTML validation
     //- a.button(v-on:click="addScreenshot()") CSS validation
     //- a.button(v-on:click="addScreenshot()") A11t validation
-  div(v-for="item in screenshots")
-    small
-      router-link(v-bind:to='"/screenshot/single/"+ item._id') {{item.name}}
+  screenshots-list-of-project(:project-id='projectID')
 </template>
 
 <script type="text/babel">
   import Services from '../../helpers/Services'
+  import ScreenshotsListOfProject from '../screenshot/ScreenshotListOfProject'
 
   export default {
     name: '',
+    components: {ScreenshotsListOfProject},
     data () {
       return {
         projectID: '',
-        project: {},
-        screenshots: {}
+        project: {}
       }
     },
 
@@ -63,13 +62,6 @@ div
         })
       },
 
-      getScreenshots () {
-        this.$http.get('http://localhost:8888/api/screenshot/read?projectID=' + this.projectID + '&token=' + window.localStorage.getItem('token')).then(response => {
-          console.log(response)
-          this.screenshots = response.body
-        })
-      },
-
       addScreenshot () {
         this.$router.replace('/screenshot/form/' + this.projectID)
       }
@@ -78,7 +70,6 @@ div
     created () {
       this.projectID = this.$route.params.page_id
       this.getProject()
-      this.getScreenshots()
     }
   }
 </script>
