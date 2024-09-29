@@ -72,6 +72,7 @@ describe('Points Store', () => {
         pointsStore.addPoint(40,20,'desc')
         pointsStore.addPoint(50,20,'desc')
 
+        
         const ID_OF_ELEMENT_TO_REMOVE = pointsStore.points[2].id
 
         pointsStore.removePoint(ID_OF_ELEMENT_TO_REMOVE)
