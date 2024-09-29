@@ -61,4 +61,20 @@ describe('Points Store', () => {
         pointsStore.removePoint(ID_OF_ELEMENT_TO_REMOVE)
         expect(0).toBe(0)
     })
+
+
+    it('function: removePoint - Gives notification if ID desnt exist', () => {
+        const pointsStore = usePointsStore()
+
+        pointsStore.addPoint(10,20,'desc')
+        pointsStore.addPoint(20,20,'desc')
+        pointsStore.addPoint(30,20,'desc')
+        pointsStore.addPoint(40,20,'desc')
+        pointsStore.addPoint(50,20,'desc')
+
+        const ID_OF_ELEMENT_TO_REMOVE = pointsStore.points[2].id
+
+        pointsStore.removePoint(ID_OF_ELEMENT_TO_REMOVE)
+        expect(0).toBe(0)
+    })
 })

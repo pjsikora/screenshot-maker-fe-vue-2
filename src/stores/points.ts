@@ -52,9 +52,11 @@ export const usePointsStore = defineStore('counter', () => {
 
   function removePoint(id) {
     const LENGTH = points.length;
+    console.log(LENGTH)
     points.filter(function(el) {
       return el.id != id
     });
+    console.log(points.length)
     if (points.length === LENGTH) {
       console.log('NOTHING REMOVED')
     }
