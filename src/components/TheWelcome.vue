@@ -2,5 +2,5 @@
 </script>
 
 <template>
-  <img src="@/assets/s1.png"
+
 </template>
