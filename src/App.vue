@@ -1,26 +1,72 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import { mapState } from 'pinia'
+import { usePointsStore } from '@/stores/points'
+import { computed } from 'vue'
+// console.log(pointsStore)
+
+const store = usePointsStore()
+store.addPoint(100, 100, 'd1')
+store.addPoint(200, 200, 'd2')
+console.log(store)
+
+const now = computed(() => mapState(usePointsStore, ['points']))
+
+function addPoint(e) {
+  console.log('addPoint', e.clientX, e.clientY);
+  store.addPoint(e.clientX, e.clientY, 'dNEW')
+}
+
+// export default {
+//   computed: {
+//     // gives access to this.count inside the component
+//     // same as reading from store.count
+//     ...mapState(usePointsStore, ['points']),
+//     // same as above but registers it as this.myOwnName
+//     ...mapState(usePointsStore, {
+//       myOwnName: 'points',
+//     }),
+//   },
+// }
 </script>
 
 <template>
+  <nav class="fixed">
+    <h2>List of points</h2>
+      <ul>
+        <li v-for="item in store.points">
+          {{ item.x }} {{ item.y }} {{ item.d }}
+        </li>
+      </ul>
+  </nav>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+      <div @click="addPoint">
+        <img src="@/assets/s1.png" alt="">
+        <div
+          v-for="item in store.points"
+          class="point"
+          :style="{top: item.y + 'px', left: item.x +'px'}"></div>
+      </div>
     </div>
   </header>
 
-  <RouterView />
 </template>
 
 <style scoped>
+.point {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: red;
+  position: absolute;
+}
+nav {
+  position: fixed;
+  //display: none;
+  background-color: #fff;
+}
 header {
   line-height: 1.5;
   max-height: 100vh;
@@ -32,7 +78,7 @@ header {
 }
 
 nav {
-  width: 100%;
+  //width: 100%;
   font-size: 12px;
   text-align: center;
   margin-top: 2rem;

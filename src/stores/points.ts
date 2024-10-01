@@ -30,7 +30,7 @@ function encryptStringWithXORtoHex(input,key) {
     return c;
 }
 
-export const usePointsStore = defineStore('counter', () => {
+export const usePointsStore = defineStore('points', () => {
   const points = reactive<Point[]>([])
 
   function addPoint(x,y,d) {
