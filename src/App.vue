@@ -1,34 +1,12 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-import { mapState } from 'pinia'
 import { usePointsStore } from '@/stores/points'
-import { computed } from 'vue'
-// console.log(pointsStore)
 
 const store = usePointsStore()
-store.addPoint(100, 100, 'd1')
-store.addPoint(200, 200, 'd2')
-console.log(store)
-
-const now = computed(() => mapState(usePointsStore, ['points']))
 
 function addPoint(e) {
-  console.log('addPoint', e.clientX, e.clientY);
-  store.addPoint(e.clientX, e.clientY, 'dNEW')
+  store.addPoint(e.pageX, e.pageY, 'dNEW')
 }
 
-// export default {
-//   computed: {
-//     // gives access to this.count inside the component
-//     // same as reading from store.count
-//     ...mapState(usePointsStore, ['points']),
-//     // same as above but registers it as this.myOwnName
-//     ...mapState(usePointsStore, {
-//       myOwnName: 'points',
-//     }),
-//   },
-// }
 </script>
 
 <template>
@@ -40,17 +18,15 @@ function addPoint(e) {
         </li>
       </ul>
   </nav>
-  <header>
-    <div class="wrapper">
-      <div @click="addPoint">
-        <img src="@/assets/s1.png" alt="">
-        <div
-          v-for="item in store.points"
-          class="point"
-          :style="{top: item.y + 'px', left: item.x +'px'}"></div>
-      </div>
+  <div class="wrapper">
+    <div @click="addPoint">
+      <img src="@/assets/s1.png" alt="">
+      <div
+        v-for="item in store.points"
+        class="point"
+        :style="{top: item.y + 'px', left: item.x +'px'}"></div>
     </div>
-  </header>
+  </div>
 
 </template>
 
@@ -72,60 +48,4 @@ header {
   max-height: 100vh;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  //width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
 </style>
